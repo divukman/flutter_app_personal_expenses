@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
+import 'package:lombok/lombok.dart';
 
+@data
 class Transaction {
   final String id;
   final String title;
