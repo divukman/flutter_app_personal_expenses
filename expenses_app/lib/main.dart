@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import './transaction.dart';
 
 void main() => runApp(MyApp());
@@ -35,7 +36,7 @@ class MyHomePage extends StatelessWidget {
           title: Text('Flutter App'),
         ),
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
               width: double.infinity,
@@ -44,7 +45,54 @@ class MyHomePage extends StatelessWidget {
                 elevation: 5,
               ),
             ),
-            Card(child: Text("list of transactions"))
+            Column(
+                children: transactions
+                    .map((t) => Card(
+                            child: Row(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.symmetric(
+                                vertical: 10,
+                                horizontal: 15,
+                              ),
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color: Colors.purple, width: 2)),
+                              padding: EdgeInsets.all(10),
+                              child: Text(
+                                '\$ ${t.amount}',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                  color: Colors.purple,
+                                ),
+                              ),
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  t.title,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    color: Colors.blueGrey,
+                                  ),
+                                ),
+                                Text(
+                                  DateFormat.yMMMEd().format(t.date),
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 12,
+                                    color: Colors.grey,
+                                  ),
+                                )
+                              ],
+                            )
+                          ],
+                        )))
+                    .toList())
           ],
         ));
   }
