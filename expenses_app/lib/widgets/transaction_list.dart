@@ -10,11 +10,13 @@ class TransactionList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-        children: transactions
-            .map((t) => Card(
-                    child: Row(
-                  children: [
+    return Container(
+      height: 300,
+      child: SingleChildScrollView(
+        child: Column(
+          children: transactions
+              .map((t) => Card(
+                      child: Row(children: [
                     Container(
                       margin: EdgeInsets.symmetric(
                         vertical: 10,
@@ -54,8 +56,10 @@ class TransactionList extends StatelessWidget {
                         )
                       ],
                     )
-                  ],
-                )))
-            .toList());
+                  ])))
+              .toList(),
+        ),
+      ),
+    );
   }
 }
