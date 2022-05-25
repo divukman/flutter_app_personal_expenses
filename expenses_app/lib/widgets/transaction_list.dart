@@ -12,53 +12,52 @@ class TransactionList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 300,
-      child: SingleChildScrollView(
-        child: Column(
-          children: transactions
-              .map((t) => Card(
-                      child: Row(children: [
-                    Container(
-                      margin: EdgeInsets.symmetric(
-                        vertical: 10,
-                        horizontal: 15,
-                      ),
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.purple, width: 2)),
-                      padding: EdgeInsets.all(10),
-                      child: Text(
-                        '\$ ${t.amount}',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                          color: Colors.purple,
-                        ),
-                      ),
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          t.title,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                            color: Colors.blueGrey,
-                          ),
-                        ),
-                        Text(
-                          DateFormat.yMMMEd().format(t.date),
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 12,
-                            color: Colors.grey,
-                          ),
-                        )
-                      ],
-                    )
-                  ])))
-              .toList(),
-        ),
+      child: ListView.builder(
+        itemBuilder: (ctx, index) {
+          return Card(
+              child: Row(children: [
+            Container(
+              margin: EdgeInsets.symmetric(
+                vertical: 10,
+                horizontal: 15,
+              ),
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.purple, width: 2)),
+              padding: EdgeInsets.all(10),
+              child: Text(
+                '\$ ${transactions[index].amount}',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  color: Colors.purple,
+                ),
+              ),
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  transactions[index].title,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Colors.blueGrey,
+                  ),
+                ),
+                Text(
+                  DateFormat.yMMMEd().format(transactions[index].date),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 12,
+                    color: Colors.grey,
+                  ),
+                )
+              ],
+            )
+          ]));
+        },
+        itemCount: transactions.length,
       ),
     );
   }
