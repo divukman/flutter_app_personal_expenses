@@ -1,4 +1,3 @@
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +22,7 @@ class Chart extends StatelessWidget {
         }
       }
       return {
-        'day': DateFormat.E().format(weekDay),
+        'day': DateFormat.E().format(weekDay).substring(0, 1),
         'amount': totalSum,
       };
     });
@@ -36,7 +35,11 @@ class Chart extends StatelessWidget {
       elevation: 6,
       margin: EdgeInsets.all(20),
       child: Row(
-        children: [],
+        children: [
+          ...groupedTransactionValues
+              .map((data) => Text('${data['day']}: ${data['amount']}'))
+              .toList()
+        ],
       ),
     );
   }
