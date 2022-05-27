@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Personal Expenses',
       theme: ThemeData(
-        primarySwatch: Colors.teal,
+        primarySwatch: Colors.indigo,
         fontFamily: 'Quicksand',
       ),
       home: MyHomePage(),
