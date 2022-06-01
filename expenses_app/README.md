@@ -1,6 +1,11 @@
 # expenses_app
 
-A new Flutter project.
+Project for learing flutter.
+You can follow the tutorial on
+- [Udemy](https://www.udemy.com/course/learn-flutter-dart-to-build-ios-android-apps/)
+
+
+![Screenshot](app.png)
 
 ## Getting Started
 
