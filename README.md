@@ -5,4 +5,4 @@ You can follow the tutorial on
 - [Udemy](https://www.udemy.com/course/learn-flutter-dart-to-build-ios-android-apps/)
 
 
-![Screenshot](./expanses_app/app.png)
+![Screenshot](./expenses_app/app.png)
