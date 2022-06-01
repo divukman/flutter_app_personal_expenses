@@ -69,8 +69,8 @@ class _NewTransactionState extends State<NewTransaction> {
     final title = titleController.text;
     final amount = double.parse(amountController.text);
 
-    if (!title.isEmpty && amount > 0) {
-      widget._addTransactionHandler(title, amount);
+    if (!title.isEmpty && amount > 0 && _selectedDate != null) {
+      widget._addTransactionHandler(title, amount, _selectedDate);
       Navigator.of(context).pop();
     }
   }

@@ -5,13 +5,14 @@ import '../models/transaction.dart';
 
 class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
+  final Function deleteTx;
 
-  TransactionList(this.transactions);
+  TransactionList(this.transactions, this.deleteTx);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300,
+      height: 700,
       child: transactions.isEmpty
           ? Column(
               children: [
@@ -34,21 +35,29 @@ class TransactionList extends StatelessWidget {
                   elevation: 5,
                   margin: EdgeInsets.symmetric(vertical: 8, horizontal: 5),
                   child: ListTile(
-                      leading: CircleAvatar(
-                        radius: 30,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: FittedBox(
-                            child: Text(
-                              '\$ ${transactions[index].amount.toStringAsFixed(2)}',
-                            ),
+                    leading: CircleAvatar(
+                      radius: 30,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: FittedBox(
+                          child: Text(
+                            '\$ ${transactions[index].amount.toStringAsFixed(2)}',
                           ),
                         ),
                       ),
-                      title: Text(transactions[index].title,
-                          style: Theme.of(context).textTheme.titleLarge),
-                      subtitle: Text(DateFormat.yMMMEd()
-                          .format(transactions[index].date))),
+                    ),
+                    title: Text(transactions[index].title,
+                        style: Theme.of(context).textTheme.titleLarge),
+                    subtitle: Text(
+                        DateFormat.yMMMEd().format(transactions[index].date)),
+                    trailing: IconButton(
+                      icon: Icon(Icons.delete),
+                      color: Theme.of(context).errorColor,
+                      onPressed: () {
+                        deleteTx(transactions[index].id);
+                      },
+                    ),
+                  ),
                 );
                 /*return Card(
                     child: Row(children: [
