@@ -11,55 +11,53 @@ class TransactionList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 700,
-      child: transactions.isEmpty
-          ? Column(
-              children: [
-                Text(
-                  'No transactions added yet...',
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Container(
-                    height: 200,
-                    child: Image.asset('assets/images/waiting.png',
-                        fit: BoxFit.cover))
-              ],
-            )
-          : ListView.builder(
-              itemBuilder: (ctx, index) {
-                return Card(
-                  elevation: 5,
-                  margin: EdgeInsets.symmetric(vertical: 8, horizontal: 5),
-                  child: ListTile(
-                    leading: CircleAvatar(
-                      radius: 30,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: FittedBox(
-                          child: Text(
-                            '\$ ${transactions[index].amount.toStringAsFixed(2)}',
-                          ),
+    return transactions.isEmpty
+        ? Column(
+            children: [
+              Text(
+                'No transactions added yet...',
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                  height: 200,
+                  child: Image.asset('assets/images/waiting.png',
+                      fit: BoxFit.cover))
+            ],
+          )
+        : ListView.builder(
+            itemBuilder: (ctx, index) {
+              return Card(
+                elevation: 5,
+                margin: EdgeInsets.symmetric(vertical: 8, horizontal: 5),
+                child: ListTile(
+                  leading: CircleAvatar(
+                    radius: 30,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: FittedBox(
+                        child: Text(
+                          '\$ ${transactions[index].amount.toStringAsFixed(2)}',
                         ),
                       ),
                     ),
-                    title: Text(transactions[index].title,
-                        style: Theme.of(context).textTheme.titleLarge),
-                    subtitle: Text(
-                        DateFormat.yMMMEd().format(transactions[index].date)),
-                    trailing: IconButton(
-                      icon: Icon(Icons.delete),
-                      color: Theme.of(context).errorColor,
-                      onPressed: () {
-                        deleteTx(transactions[index].id);
-                      },
-                    ),
                   ),
-                );
-                /*return Card(
+                  title: Text(transactions[index].title,
+                      style: Theme.of(context).textTheme.titleLarge),
+                  subtitle: Text(
+                      DateFormat.yMMMEd().format(transactions[index].date)),
+                  trailing: IconButton(
+                    icon: Icon(Icons.delete),
+                    color: Theme.of(context).errorColor,
+                    onPressed: () {
+                      deleteTx(transactions[index].id);
+                    },
+                  ),
+                ),
+              );
+              /*return Card(
                     child: Row(children: [
                   Container(
                     margin: EdgeInsets.symmetric(
@@ -84,9 +82,8 @@ class TransactionList extends StatelessWidget {
                     ],
                   )
                 ]));*/
-              },
-              itemCount: transactions.length,
-            ),
-    );
+            },
+            itemCount: transactions.length,
+          );
   }
 }
